@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Todo</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #3498db, #9b59b6);
+        color: #fff;
+      }
+
+      header {
+        background: linear-gradient(135deg, #3498db, #9b59b6);
+        padding: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        margin-top: 20px;
+        text-align: center;
+        color: #fff;
+        font-size: 36px;
+      }
+
+      form {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      input[type="text"] {
+        padding: 15px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        width: 60%;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 15px 25px;
+        font-size: 16px;
+        background: linear-gradient(135deg, #3498db, #9b59b6);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Edit Todo</h1>
+    </header>
+    <main>
+      <form action="{{ url_for('edit', index=index) }}" method="post">
+        <input type="text" name="todo" value="{{ todo['task'] }}">
+        <button type="submit">Save Changes</button>
+      </form>
+    </main>
+  </body>
+</html>

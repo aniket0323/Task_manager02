@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #3498db, #9b59b6);
+        color: #fff;
+      }
+
+      header {
+        background: linear-gradient(135deg, #3498db, #9b59b6);
+        padding: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        margin-top: 20px;
+        text-align: center;
+        color: #fff;
+        font-size: 36px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="checkbox"] {
+        margin-right: 10px;
+      }
+      span{
+        color: black;
+      }
+      a {
+        text-decoration: none;
+        color: black;
+        margin-left: 10px;
+        font-weight: bold;
+      }
+
+      form {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      input[type="text"] {
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+        width: 70%;
+      }
+
+      button {
+        padding: 12px 20px;
+        font-size: 16px;
+        background: linear-gradient(135deg, #3498db, #9b59b6);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Task Manager</h1>
+    </header>
+    <main>
+      <ul>
+        {% for todo in todos %}
+          <li>
+            <input type="checkbox" name="done" {% if todo['done'] %}checked{% endif %} onchange="this.form.submit()">
+            <span {% if todo['done'] %}style="text-decoration: line-through"{% endif %}>{{ todo['task'] }}</span>
+            <a href="{{ url_for('edit', index=loop.index0) }}">Edit</a>
+            <a href="{{ url_for('delete', index=loop.index0) }}">Delete</a>
+          </li>
+        {% endfor %}
+      </ul>
+      <form action="{{ url_for('add') }}" method="POST">
+        <input type="text" name="todo" placeholder="Add a new task">
+        <button type="submit">Add Task</button>
+      </form>
+    </main>
+  </body>
+</html>
